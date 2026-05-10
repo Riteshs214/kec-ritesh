@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ritesh</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+        min-height: 100vh;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  </head>
+
+  <body class="flex items-center justify-center p-4 text-white">
+    <div class="glass w-full max-w-5xl rounded-3xl shadow-2xl p-6 md:p-10">
+      <!-- Heading -->
+      <div class="text-center mb-8">
+        <h1
+          class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+        >
+          Qoutation Form
+        </h1>
+        <p class="text-gray-300 mt-2">Fill details carefully</p>
+      </div>
+
+      <!-- Form -->
+      <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Customer Name -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Customer Name</label>
+          <input
+            type="text"
+            placeholder="Enter customer name"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Address -->
+        <div class="md:col-span-2">
+          <label class="block mb-2 text-sm font-medium">Customer Address</label>
+          <textarea
+            placeholder="Enter address"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          ></textarea>
+        </div>
+
+        <!-- Phone No -->
+        <div>
+          <label class="block mb-2 text-sm font-medium"
+            >Customer Phone No</label
+          >
+          <input
+            type="tel"
+            placeholder="Enter phone number"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Model -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Model</label>
+          <select
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          >
+            <option>SONET</option>
+            <option>SELTOS</option>
+            <option>SYROS</option>
+            <option>CLAVIS</option>
+            <option>CARENS</option>
+          </select>
+        </div>
+
+        <!-- Variant -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Variant</label>
+          <input
+            type="text"
+            placeholder="Enter variant"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Color -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Color</label>
+          <input
+            type="text"
+            placeholder="Enter color"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Fuel -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Fuel Type</label>
+          <select
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          >
+            <option>Petrol</option>
+            <option>Diesel</option>
+            <option>Electric</option>
+          </select>
+        </div>
+
+        <!-- KEC Name -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">KEC Name</label>
+          <input
+            type="text"
+            placeholder="Enter KEC name"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Mobile -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">KEC Mobile</label>
+          <input
+            type="tel"
+            placeholder="Enter mobile number"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Customer Email</label>
+          <input
+            type="email"
+            placeholder="Enter email"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Date -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Date</label>
+          <input
+            type="date"
+            id="todayDate"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Submit -->
+        <div class="md:col-span-2 mt-4">
+          <button
+            type="submit"
+            class="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 text-lg font-semibold hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-cyan-500/20"
+          >
+            Submit Form
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Auto Today Date -->
+    <script>
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("todayDate").value = today;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Khatwani Sales and Services - Quotation</title>
+   
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      @page {
+        size: A4 landscape;
+        margin: 5mm;
+      }
+
+      body {
+        background: #e5e5e5;
+        font-family: Arial, sans-serif;
+        color: #000;
+        overflow-x: auto;
+        padding: 10px;
+      }
+
+      /* MAIN PAGE */
+      .page {
+        width: 297mm;
+        min-height: 210mm;
+        margin: auto;
+        background: #fff;
+        border: 2px solid #000;
+        overflow: hidden;
+        transform-origin: top left;
+      }
+
+      /* HEADER */
+      .main-header {
+        background: #1a3a6b;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        border-bottom: 1.5px solid #000;
+      }
+
+      /* TOP BAR */
+      .top-bar {
+        display: flex;
+        align-items: stretch;
+        border-bottom: 1.5px solid #000;
+      }
+
+      .top-bar .ser,
+      .top-bar .date-sec {
+        width: 220px;
+        padding: 8px 12px;
+        font-weight: bold;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+      }
+
+      .top-bar .ser {
+        border-right: 1.5px solid #000;
+      }
+
+      .top-bar .date-sec {
+        justify-content: space-between;
+        border-left: 1.5px solid #000;
+      }
+
+      .top-bar .quotation-title {
+        flex: 1;
+        background: #ffff00;
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 8px 0;
+      }
+
+      /* CUSTOMER TABLE */
+      .customer-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+        border-bottom: 1.5px solid #000;
+      }
+
+      .customer-table td {
+        border: 1px solid #000;
+        padding: 5px 10px;
+        font-size: 12px;
+        height: 28px;
+      }
+
+      .customer-table .lbl {
+        width: 240px;
+        font-weight: bold;
+      }
+
+      .customer-table .val {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      /* MAIN TABLE */
+      .main-table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      .main-table td {
+        border: 1px solid #000;
+        padding: 5px 8px;
+        font-size: 14px;
+        height: 30px;
+        vertical-align: middle;
+      }
+
+      /* FIXED COLUMN WIDTHS */
+      .main-table col.col1 {
+        width: 22%;
+      }
+
+      .main-table col.col2,
+      .main-table col.col3,
+      .main-table col.col4,
+      .main-table col.col5,
+      .main-table col.col6 {
+        width: 12%;
+      }
+
+      .main-table col.col7 {
+        width: 8%;
+      }
+
+      .main-table col.col8 {
+        width: 14%;
+      }
+
+      /* HEADERS */
+      .dark-header {
+        background: #dfe7f5;
+        font-weight: bold;
+        text-align: center;
+        font-size: 13px;
+      }
+
+      .row-label {
+        font-weight: bold;
+      }
+
+      .row-value {
+        text-align: center;
+        font-weight: bold;
+      }
+
+      /* NOTE + RTGS */
+      .note-section {
+        display: flex;
+        border-top: 1.5px solid #000;
+      }
+
+      .note-left {
+        flex: 2;
+        padding: 4px 12px;
+        /* border-right: 1.5px solid #000; */
+      }
+
+      .note-right {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .note-highlight {
+        background: #ffff00;
+        font-weight: bold;
+        font-size: 13px;
+        padding: 3px 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+      }
+
+      .note-item {
+        font-size: 11px;
+        line-height: 1.4;
+        margin-bottom: 2px;
+      }
+
+      .rtgs-title {
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+
+      /* FOOTER */
+      .footer-section {
+        display: flex;
+        height: 135px;
+        border-top: 1.5px solid #000;
+      }
+
+      .footer-left {
+        flex: 1.7;
+        padding: 8px 10px;
+        border-right: 1.5px solid #000;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .footer-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .kec-header {
+        background: #1a3a6b;
+        color: #fff;
+        text-align: center;
+        font-size: 13px;
+        font-weight: bold;
+        padding: 5px 0;
+        border-bottom: 1px solid #000;
+      }
+
+      .footer-right-inner {
+        flex: 1;
+        padding: 0px 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      /* SIGNATURE AREA */
+      .sig-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .sig-label-block {
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      .sig-space {
+        width: 170px;
+        height: 55px;
+        border-bottom: 1px solid #000;
+      }
+
+      /* NAME BLOCK */
+      .name-block {
+        margin-top: 5px;
+      }
+
+      .name-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      .name-row .nl {
+        min-width: 75px;
+        font-weight: bold;
+        background: #ffff00;
+      }
+
+      .name-row .nv {
+        flex: 1;
+        font-weight: bold;
+        padding: 2px 8px;
+        /* text-align: center; */
+      }
+
+      .main-model {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 16px;
+  /* height: 38px; */
+  line-height: 25px;
+  padding: 0;
+}
+
+      /* LINKS */
+      a {
+        color: #1a3a6b;
+        text-decoration: none;
+      }
+
+      /* MOBILE LANDSCAPE VIEW */
+      @media screen and (max-width: 1100px) {
+        body {
+          overflow-x: auto;
+        }
+
+        .page {
+          width: 297mm;
+        }
+      }
+
+      /* PRINT SETTINGS */
+      @media print {
+        body {
+          background: #fff;
+          padding: 0;
+          margin: 0;
+        }
+
+        .page {
+          width: 297mm;
+          height: 210mm;
+          margin: 0;
+          border: 1px solid #000;
+        }
+
+        * {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+      /* PRINT BUTTON */
+
+      .print-btn-wrap {
+        width: 297mm;
+        margin: 15px auto 10px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .print-btn {
+        background: #1a3a6b;
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+      }
+
+      .print-btn:hover {
+        opacity: 0.9;
+      }
+
+      /* PRINT SETTINGS */
+
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
+      @media print {
+        html,
+        body {
+          width: 297mm;
+          height: 210mm;
+          margin: 0 !important;
+          padding: 0 !important;
+          overflow: hidden;
+          background: #fff;
+        }
+
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .print-btn-wrap {
+          display: none !important;
+        }
+
+        .page {
+          width: 297mm;
+          height: 210mm;
+          margin: 0;
+          border: 1px solid #000;
+          box-shadow: none;
+          overflow: hidden;
+        }
+      }
+
+      /* MOBILE LANDSCAPE VIEW */
+
+      body {
+        overflow-x: auto;
+      }
+
+      @media screen and (max-width: 1100px) {
+        body {
+          padding: 10px;
+        }
+
+        .page {
+          width: 297mm;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="print-btn-wrap">
+      <button onclick="printQuotation()" class="print-btn">
+        PRINT QUOTATION
+      </button>
+    </div>
+    <div class="page">
+      <!-- HEADER -->
+      <div class="main-header">KHATWANI SALES AND SERVICES L.L.P.</div>
+
+      <!-- TOP BAR -->
+      <div class="top-bar">
+        <div class="ser">SER NO. 136</div>
+
+        <div class="quotation-title">QUOTATION</div>
+
+        <div class="date-sec">
+          <span>DATE</span>
+          <span>07-05-2026</span>
+        </div>
+      </div>
+
+      <!-- CUSTOMER INFO -->
+      <table class="customer-table">
+        <tr>
+          <td class="lbl">CUSTOMER NAME :-</td>
+          <td class="val">MR SUMIT SHARMA</td>
+        </tr>
+
+        <tr>
+          <td class="lbl">ADDRESS :-</td>
+          <td class="val">JABALPUR</td>
+        </tr>
+
+        <tr>
+          <td class="lbl">PHONE NO :-</td>
+          <td class="val"></td>
+        </tr>
+
+        <tr>
+          <td class="lbl">EMAIL :-</td>
+          <td class="val"></td>
+        </tr>
+      </table>
+
+      <!-- MAIN TABLE -->
+      <table class="main-table">
+        <colgroup>
+          <col style="width: 22%" />
+          <col style="width: 12%" />
+          <col style="width: 12%" />
+          <col style="width: 12%" />
+          <col style="width: 12%" />
+          <col style="width: 12%" />
+          <col style="width: 8%" />
+          <col style="width: 10%" />
+        </colgroup>
+
+        <!-- TOP VEHICLE INFO -->
+        <tr>
+          <td class="dark-header">MODEL :-</td>
+          <td class="dark-header">SONET</td>
+
+          <td class="dark-header">VARIANT</td>
+          <td class="dark-header">HTX</td>
+
+          <td class="dark-header">COLOUR</td>
+          <td class="dark-header">WHITE</td>
+
+          <td class="dark-header">FUEL</td>
+          <td class="dark-header">DSL 1.5 MT</td>
+        </tr>
+
+        <!-- MAIN MODEL -->
+        <tr>
+          <td class="row-label">MODEL :-</td>
+
+          <td colspan="7" class="main-model">HTK PLUS</td>
+        </tr>
+
+        <!-- PRICE ROWS -->
+        <tr>
+          <td class="row-label">EXSHOWROOM CSD</td>
+          <td class="row-value">10,35,900</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">COMP / ZERO DEP INS</td>
+          <td class="row-value">46,486</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">REGISTRATION</td>
+          <td class="row-value">1,32,883</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">TEMP REG</td>
+          <td class="row-value">0</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">ACCESSORIES / ESSENTIALS</td>
+          <td class="row-value">0</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">EXTENDED WARRANTY</td>
+          <td class="row-value">26,695</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">TCS 1%</td>
+          <td class="row-value">10,359</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td class="row-label">FASTAG</td>
+          <td class="row-value">700</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- FINAL -->
+        <tr>
+          <td class="final-label row-label">ON ROAD</td>
+
+          <td class="final-value row-value">12,53,023</td>
+
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <!-- BLANK ROWS -->
+        <tr class="blank-row">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <!-- NOTE SECTION -->
+      <div class="note-section">
+        <!-- LEFT -->
+        <div class="note-left">
+          <div class="note-highlight">
+            NOTE - SELTOS WAITING PERIOD IS 4 TO 8 WEEKS OFFICIAL
+          </div>
+
+          <div class="note-item">
+            1 - Price prevailing at the time of invoicing will be applicable.
+          </div>
+
+          <div class="note-item">
+            2 - Registration price includes registration fee, HPA charges and
+            taxes.
+          </div>
+
+          <div class="note-item">3 - Vehicle home delivery charges extra.</div>
+
+          <div class="note-item">
+            4 - Cheque payment considered only after clearance from bank.
+          </div>
+
+          <div class="note-item">
+            5 - All disputes are subject to Jabalpur jurisdiction.
+          </div>
+
+          <div class="note-item">
+            6 - Vehicle delivery will be done after full payment confirmation.
+          </div>
+
+          <div class="note-item">
+            7 - Vehicle delivery subject to manufacturer availability.
+          </div>
+
+          <div class="note-item">
+            8 - Required documents: Address Proof & PAN Card.
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="note-right">
+          <div class="rtgs-title">DETAILS FOR RTGS</div>
+
+          <div>KHATWANI SALES AND SERVICES LLP</div>
+          <div>HDFC BANK</div>
+          <div>GOLBAZAR JABALPUR</div>
+          <div>A/C NO - 50200038843736</div>
+          <div>IFSC - HDFC0000224</div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="footer-section">
+        <!-- LEFT -->
+        <div class="footer-left">
+          <div><strong>KHATWANI SALES AND SERVICES LLP</strong></div>
+
+          <div>KIA INDIA</div>
+
+          <div>Sales & Service</div>
+
+          <div>
+            509/4D Near Tripuri Chowk, Madan Mahal Road, Garha Jabalpur (MP) -
+            482003
+          </div>
+
+          <div>
+            16-17 Telwara Nagpur Road Near Radha Swami Satsang, Jabalpur (MP) -
+            480003
+          </div>
+
+          <div>
+            <a href="mailto:khatwanikia.edp@gmail.com">
+              khatwanikia.edp@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <div class="footer-right">
+          <div class="kec-header">KEC</div>
+
+          <div class="footer-right-inner">
+            <div class="sig-area">
+              <div class="sig-label-block">SIGNATURE</div>
+
+              <div class="sig-space"></div>
+            </div>
+
+            <div class="name-block">
+              <div class="name-row">
+                <span class="nl">NAME :-</span>
+                <span class="nv">RITESH</span>
+              </div>
+
+              <div class="name-row">
+                <span class="nl">MO.NO :-</span>
+                <span class="nv">0000000000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function printQuotation() {
+      window.print();
+    }
+  </script>
+</html>
