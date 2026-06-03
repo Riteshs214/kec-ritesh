@@ -1,174 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ritesh</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Ritesh KEC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
+    body {
+      background: #e5e5e5;
+      font-family: Arial, sans-serif;
+      color: #000;
+      overflow-x: auto;
+      padding: 10px;
+    }
+
+    #customer_name,
+    #customer_address,
+    #kec_name {
+      text-transform: uppercase;
+    }
+
+    /* PAGE */
+    .page {
+      width: 297mm;
+      height: 200mm;
+      margin: auto;
+      background: #fff;
+      border: 1px solid #000;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .main-header {
+      background: #1a3a6b;
+      color: #fff;
+      text-align: center;
+      padding: 6px 0;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-bottom: 1px solid #000;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 1px solid #000;
+    }
+
+    .top-bar .ser,
+    .top-bar .date-sec {
+      width: 220px;
+      padding: 6px 10px;
+      font-weight: bold;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .top-bar .ser {
+      border-right: 1px solid #000;
+    }
+
+    .top-bar .date-sec {
+      justify-content: space-between;
+      border-left: 1px solid #000;
+    }
+
+    .top-bar .quotation-title {
+      flex: 1;
+      background: yellow;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 6px 0;
+    }
+
+    /* CUSTOMER TABLE */
+    .customer-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border-bottom: 1px solid #000;
+    }
+
+    .customer-table td {
+      border: 1px solid #000;
+      padding: 4px 8px;
+      font-size: 11px;
+      height: 24px;
+    }
+
+    .customer-table .lbl {
+      width: 220px;
+      font-weight: bold;
+    }
+
+    .customer-table .val {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    /* MAIN TABLE */
+    .main-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .main-table td {
+      border: 1px solid #000;
+      padding: 4px 6px;
+      font-size: 11px;
+      height: 26px;
+      vertical-align: middle;
+    }
+
+    .dark-header {
+      background: #dfe7f5;
+      font-weight: bold;
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .row-label {
+      font-weight: bold;
+    }
+
+    .row-value {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .main-model {
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    /* NOTE SECTION */
+    .note-section {
+      display: flex;
+      border-top: 1px solid #000;
+    }
+
+    .note-left {
+      flex: 2;
+      padding: 5px 10px;
+    }
+
+    .note-right {
+      flex: 1;
+      padding: 6px;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .note-highlight {
+      background: yellow;
+      font-weight: bold;
+      font-size: 11px;
+      padding: 2px 4px;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .note-item {
+      font-size: 10px;
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .rtgs-title {
+      font-weight: bold;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    /* FOOTER */
+    .footer-section {
+      display: flex;
+      height: 95px;
+      border-top: 1px solid #000;
+    }
+
+    .footer-left {
+      flex: 1.7;
+      padding: 6px 8px;
+      /* border-right: 1px solid #000; */
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .footer-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .kec-header {
+      background: #1a3a6b;
+      color: #fff;
+      text-align: center;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 4px 0;
+      border-bottom: 1px solid #000;
+    }
+
+    .footer-right-inner {
+      flex: 1;
+      border: 1px solid black;
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* SIGNATURE */
+    .sig-area {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .sig-label-block {
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .sig-space {
+      width: 140px;
+      height: 40px;
+      border-bottom: 1px solid #000;
+    }
+
+    /* NAME */
+    .name-block {
+      margin-top: 4px;
+    }
+
+    .name-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      font-size: 11px;
+    }
+
+    .name-row .nl {
+      min-width: 65px;
+      font-weight: bold;
+      background: yellow;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 4px;
+    }
+
+    .name-row .nv {
+      flex: 1;
+      font-weight: bold;
+      padding: 2px 5px;
+    }
+
+    a {
+      color: #1a3a6b;
+      text-decoration: none;
+    }
+
+    /* BUTTON */
+    .print-btn-wrap {
+      width: 297mm;
+      margin: 15px auto 10px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .print-btn {
+      background: #1a3a6b;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* PRINT SETTINGS */
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
       body {
-        background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
-        min-height: 100vh;
+        width: 100%;
+        height: 100%;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        overflow: hidden !important;
+        background: #fff;
+
+        display: flex;
+
+        /* PERFECT CENTER */
+        justify-content: center;
+        align-items: center;
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
 
-      .glass {
-        background: rgba(255, 255, 255, 0.06);
-        backdrop-filter: blur(14px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+      .print-btn-wrap {
+        display: none !important;
       }
-    </style>
-  </head>
 
-  <body class="flex items-center justify-center p-4 text-white">
-    <div class="glass w-full max-w-5xl rounded-3xl shadow-2xl p-6 md:p-10">
-      <!-- Heading -->
-      <div class="text-center mb-8">
-        <h1
-          class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-        >
-          Qoutation Form
-        </h1>
-        <p class="text-gray-300 mt-2">Fill details carefully</p>
-      </div>
+      .page {
+        width: 297mm;
+        height: 200mm;
 
-      <!-- Form -->
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Customer Name -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Customer Name</label>
-          <input
-            type="text"
-            placeholder="Enter customer name"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+        border: 1px solid #000;
+        box-shadow: none;
 
-        <!-- Address -->
-        <div class="md:col-span-2">
-          <label class="block mb-2 text-sm font-medium">Customer Address</label>
-          <textarea
-            placeholder="Enter address"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          ></textarea>
-        </div>
+        overflow: hidden !important;
 
-        <!-- Phone No -->
-        <div>
-          <label class="block mb-2 text-sm font-medium"
-            >Customer Phone No</label
-          >
-          <input
-            type="tel"
-            placeholder="Enter phone number"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+        /* SINGLE PAGE */
+        transform: scale(0.94);
 
-        <!-- Model -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Model</label>
-          <select
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          >
-            <option>SONET</option>
-            <option>SELTOS</option>
-            <option>SYROS</option>
-            <option>CLAVIS</option>
-            <option>CARENS</option>
-          </select>
-        </div>
+        /* CENTER SCALE */
+        transform-origin: center center;
 
-        <!-- Variant -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Variant</label>
-          <input
-            type="text"
-            placeholder="Enter variant"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+        margin: 0 auto !important;
 
-        <!-- Color -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Color</label>
-          <input
-            type="text"
-            placeholder="Enter color"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+        position: relative;
 
-        <!-- Fuel -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Fuel Type</label>
-          <select
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          >
-            <option>Petrol</option>
-            <option>Diesel</option>
-            <option>Electric</option>
-          </select>
-        </div>
+        left: 0 !important;
+        right: 0 !important;
+      }
 
-        <!-- KEC Name -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">KEC Name</label>
-          <input
-            type="text"
-            placeholder="Enter KEC name"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+      * {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+    }
+  </style>
+</head>
 
-        <!-- Mobile -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">KEC Mobile</label>
-          <input
-            type="tel"
-            placeholder="Enter mobile number"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+<body>
 
-        <!-- Email -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Customer Email</label>
-          <input
-            type="email"
-            placeholder="Enter email"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+  <div class="print-btn-wrap">
+    <button onclick="printQuotation()" class="print-btn">
+      PRINT QUOTATION
+    </button>
+  </div>
 
-        <!-- Date -->
-        <div>
-          <label class="block mb-2 text-sm font-medium">Date</label>
-          <input
-            type="date"
-            id="todayDate"
-            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
-          />
-        </div>
+  <div class="page">
 
-        <!-- Submit -->
-        <div class="md:col-span-2 mt-4">
-          <button
-            type="submit"
-            class="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 text-lg font-semibold hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-cyan-500/20"
-          >
-            Submit Form
-          </button>
-        </div>
-      </form>
+    <div class="main-header">
+      KHATWANI SALES AND SERVICES L.L.P.
     </div>
 
-    <!-- Auto Today Date -->
-    <script>
-      const today = new Date().toISOString().split("T")[0];
-      document.getElementById("todayDate").value = today;
-    </script>
-  </body>
+    <div class="top-bar">
+
+      <div class="ser">
+        SER NO. 136
+      </div>
+
+      <div class="quotation-title">
+        QUOTATION
+      </div>
+
+      <div class="date-sec">
+        <span>DATE</span>
+        <span id="quotation_date"></span>
+      </div>
+
+    </div>
+
+    <table class="customer-table">
+
+      <tr>
+        <td class="lbl">CUSTOMER NAME :-</td>
+        <td class="val" id="customer_name"></td>
+      </tr>
+
+      <tr>
+        <td class="lbl">ADDRESS :-</td>
+        <td class="val" id="customer_address"></td>
+      </tr>
+
+      <tr>
+        <td class="lbl">PHONE NO :-</td>
+        <td class="val" id="customer_phone"></td>
+      </tr>
+
+      <tr>
+        <td class="lbl">EMAIL :-</td>
+        <td class="val" id="customer_email"></td>
+      </tr>
+
+    </table>
+
+    <table class="main-table">
+
+      <colgroup>
+        <col style="width:22%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:12%">
+        <col style="width:8%">
+        <col style="width:10%">
+      </colgroup>
+
+      <tr>
+        <td class="dark-header">MODEL :-</td>
+        <td class="dark-header" id="model"></td>
+
+        <td class="dark-header">VARIANT</td>
+        <td class="dark-header" id="variant"></td>
+
+        <td class="dark-header">COLOUR</td>
+        <td class="dark-header" id="color"></td>
+
+        <td class="dark-header">FUEL</td>
+        <td class="dark-header" id="fuel"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">MODEL :-</td>
+        <td colspan="7" class="main-model" id="description"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">EXSHOWROOM</td>
+        <td class="row-value" id="ex_showroom"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">COMP / ZERO DEP INS</td>
+        <td class="row-value" id="insurance"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">REGISTRATION</td>
+        <td class="row-value" id="registration"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">ACCESSORIES / ESSENTIALS</td>
+        <td class="row-value" id="accessories"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">EXTENDED WARRANTY</td>
+        <td class="row-value" id="extended_warranty"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">TCS 1%</td>
+        <td class="row-value" id="tcs"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">FASTAG</td>
+        <td class="row-value" id="fastag"></td>
+        <td colspan="6"></td>
+      </tr>
+
+      <tr>
+        <td class="row-label">ON ROAD</td>
+        <td class="row-value" id="on_road"></td>
+        <td colspan="6"></td>
+      </tr>
+
+    </table>
+
+    <div class="note-section">
+
+      <div class="note-left">
+
+        <div class="note-highlight">
+          NOTE - SELTOS WAITING PERIOD IS 4 TO 8 WEEKS OFFICIAL
+        </div>
+
+        <div class="note-item">
+          1 - Price prevailing at the time of invoicing will be applicable.
+        </div>
+
+        <div class="note-item">
+          2 - Registration price includes registration fee, HPA charges and taxes.
+        </div>
+
+        <div class="note-item">
+          3 - Vehicle home delivery charges extra.
+        </div>
+
+        <div class="note-item">
+          4 - Cheque payment considered only after clearance from bank.
+        </div>
+
+        <div class="note-item">
+          5 - All disputes are subject to Jabalpur jurisdiction.
+        </div>
+
+        <div class="note-item">
+          6 - Vehicle delivery will be done after full payment confirmation.
+        </div>
+
+        <div class="note-item">
+          7 - Vehicle delivery subject to manufacturer availability.
+        </div>
+
+        <div class="note-item">
+          8 - Required documents: Address Proof & PAN Card.
+        </div>
+
+      </div>
+
+      <div class="note-right">
+
+        <div class="rtgs-title">DETAILS FOR RTGS</div>
+
+        <div>KHATWANI SALES AND SERVICES LLP</div>
+        <div>HDFC BANK</div>
+        <div>GOLBAZAR JABALPUR</div>
+        <div>A/C NO - 50200038843736</div>
+        <div>IFSC - HDFC0000224</div>
+
+      </div>
+
+    </div>
+
+    <div class="footer-section">
+
+      <div class="footer-left">
+
+        <div><strong>KHATWANI SALES AND SERVICES LLP</strong></div>
+
+        <div>KIA INDIA</div>
+
+        <div>Sales & Service</div>
+
+        <div>
+          509/4D Near Tripuri Chowk, Madan Mahal Road,
+          Garha Jabalpur (MP) - 482003
+        </div>
+
+        <div>
+          16-17 Tilwara Nagpur Road Near Radha Swami Satsang,
+          Jabalpur (MP) - 480003
+        </div>
+
+        <div>
+          <a href="mailto:khatwanikia.edp@gmail.com">
+            khatwanikia.edp@gmail.com
+          </a>
+        </div>
+
+      </div>
+
+      <div class="footer-right">
+
+        <div class="kec-header">
+          KEC
+        </div>
+
+        <div class="footer-right-inner">
+
+          <div class="sig-area">
+
+            <div class="sig-label-block">
+              SIGNATURE
+            </div>
+
+            <div class="sig-space">
+              <img
+                src="https://blogger.googleusercontent.com/img/a/AVvXsEgfHbMFEhbHnxTcp8QcCniHA9TY_rZSJy7ifzK7MI8kmnErH0TuOtuywG8eJV0MFTRUVfuhx-jJbZtSB8jXTT06yY5ZY7lEDntBCFi9CRbFI5DwzGyd_bhZ1D3DkMRpHW_lotJ430r7dd2mjWf-OE2VUu9M9XqKzJ7C23xX80s-MsTtoljp0PKAHFLo0W8"
+                alt="" style="width: 147px;">
+            </div>
+
+          </div>
+
+          <div class="name-block">
+
+            <div class="name-row">
+              <span class="nl">NAME :-</span>
+              <span class="nv" id="kec_name"></span>
+            </div>
+
+            <div class="name-row">
+              <span class="nl">MO.NO :-</span>
+              <span class="nv" id="kec_mobile"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    function printQuotation() {
+      window.print();
+    }
+
+    // GET URL DATA
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    // FORMAT PRICE
+    function formatPrice(value) {
+
+      if (value == null || value == "")
+        return "0";
+
+      return Number(value)
+        .toLocaleString("en-IN");
+
+    }
+
+    // FORMAT DATE
+    let formattedDate = "";
+
+    const rawDate =
+      params.get("quotation_date");
+
+    if (rawDate) {
+
+      const parts =
+        rawDate.split("-");
+
+      formattedDate =
+        `${parts[2]}-${parts[1]}-${parts[0]}`;
+
+    }
+
+    // CUSTOMER
+    document.getElementById("customer_name").innerText =
+      params.get("customer_name") || "";
+
+    document.getElementById("customer_address").innerText =
+      params.get("customer_address") || "";
+
+    document.getElementById("customer_phone").innerText =
+      params.get("customer_phone") || "";
+
+    document.getElementById("customer_email").innerText =
+      params.get("customer_email") || "";
+
+    document.getElementById("quotation_date").innerText =
+      formattedDate;
+
+    document.getElementById("kec_name").innerText =
+      params.get("kec_name") || "";
+
+    document.getElementById("kec_mobile").innerText =
+      params.get("kec_mobile") || "";
+
+    // CAR
+    document.getElementById("model").innerText =
+      params.get("model") || "";
+
+    document.getElementById("variant").innerText =
+      params.get("variant") || "";
+
+    document.getElementById("fuel").innerText =
+      params.get("fuel") || "";
+
+    document.getElementById("color").innerText =
+      params.get("color") || "";
+
+    document.getElementById("description").innerText =
+      params.get("description") || "";
+
+    // PRICES
+    document.getElementById("ex_showroom").innerText =
+      formatPrice(params.get("ex_showroom"));
+
+    document.getElementById("insurance").innerText =
+      formatPrice(params.get("insurance"));
+
+    document.getElementById("registration").innerText =
+      formatPrice(params.get("registration"));
+
+    document.getElementById("accessories").innerText =
+      formatPrice(params.get("accessories"));
+
+    document.getElementById("extended_warranty").innerText =
+      formatPrice(params.get("extended_warranty"));
+
+    document.getElementById("tcs").innerText =
+      formatPrice(params.get("tcs"));
+
+    document.getElementById("fastag").innerText =
+      formatPrice(params.get("fastag"));
+
+    //document.getElementById("on_road").innerText = formatPrice(params.get("on_road"));
+    const total =
+      Number(params.get("ex_showroom") || 0) +
+      Number(params.get("insurance") || 0) +
+      Number(params.get("registration") || 0) +
+      Number(params.get("accessories") || 0) +
+      Number(params.get("extended_warranty") || 0) +
+      Number(params.get("tcs") || 0) +
+      Number(params.get("fastag") || 0);
+
+    document.getElementById("on_road").innerText = formatPrice(total);
+  </script>
+</body>
+
 </html>
