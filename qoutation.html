@@ -2,719 +2,3309 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Khatwani Sales and Services - Quotation</title>
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritesh KEC</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      @page {
-        size: A4 landscape;
-        margin: 5mm;
-      }
-
       body {
-        background: #e5e5e5;
-        font-family: Arial, sans-serif;
-        color: #000;
-        overflow-x: auto;
-        padding: 10px;
+        background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+        min-height: 100vh;
       }
 
-      /* MAIN PAGE */
-      .page {
-        width: 297mm;
-        min-height: 210mm;
-        margin: auto;
-        background: #fff;
-        border: 2px solid #000;
-        overflow: hidden;
-        transform-origin: top left;
-      }
-
-      /* HEADER */
-      .main-header {
-        background: #1a3a6b;
-        color: #fff;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 22px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        border-bottom: 1.5px solid #000;
-      }
-
-      /* TOP BAR */
-      .top-bar {
-        display: flex;
-        align-items: stretch;
-        border-bottom: 1.5px solid #000;
-      }
-
-      .top-bar .ser,
-      .top-bar .date-sec {
-        width: 220px;
-        padding: 8px 12px;
-        font-weight: bold;
-        font-size: 13px;
-        display: flex;
-        align-items: center;
-      }
-
-      .top-bar .ser {
-        border-right: 1.5px solid #000;
-      }
-
-      .top-bar .date-sec {
-        justify-content: space-between;
-        border-left: 1.5px solid #000;
-      }
-
-      .top-bar .quotation-title {
-        flex: 1;
-        background: #ffff00;
-        text-align: center;
-        font-size: 22px;
-        font-weight: bold;
-        padding: 8px 0;
-      }
-
-      /* CUSTOMER TABLE */
-      .customer-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-        border-bottom: 1.5px solid #000;
-      }
-
-      .customer-table td {
-        border: 1px solid #000;
-        padding: 5px 10px;
-        font-size: 12px;
-        height: 28px;
-      }
-
-      .customer-table .lbl {
-        width: 240px;
-        font-weight: bold;
-      }
-
-      .customer-table .val {
-        text-align: center;
-        font-weight: bold;
-      }
-
-      /* MAIN TABLE */
-      .main-table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: fixed;
-      }
-
-      .main-table td {
-        border: 1px solid #000;
-        padding: 5px 8px;
-        font-size: 14px;
-        height: 30px;
-        vertical-align: middle;
-      }
-
-      /* FIXED COLUMN WIDTHS */
-      .main-table col.col1 {
-        width: 22%;
-      }
-
-      .main-table col.col2,
-      .main-table col.col3,
-      .main-table col.col4,
-      .main-table col.col5,
-      .main-table col.col6 {
-        width: 12%;
-      }
-
-      .main-table col.col7 {
-        width: 8%;
-      }
-
-      .main-table col.col8 {
-        width: 14%;
-      }
-
-      /* HEADERS */
-      .dark-header {
-        background: #dfe7f5;
-        font-weight: bold;
-        text-align: center;
-        font-size: 13px;
-      }
-
-      .row-label {
-        font-weight: bold;
-      }
-
-      .row-value {
-        text-align: center;
-        font-weight: bold;
-      }
-
-      /* NOTE + RTGS */
-      .note-section {
-        display: flex;
-        border-top: 1.5px solid #000;
-      }
-
-      .note-left {
-        flex: 2;
-        padding: 4px 12px;
-        /* border-right: 1.5px solid #000; */
-      }
-
-      .note-right {
-        flex: 1;
-        padding: 10px;
-        text-align: center;
-        font-size: 13px;
-        line-height: 1.6;
-      }
-
-      .note-highlight {
-        background: #ffff00;
-        font-weight: bold;
-        font-size: 13px;
-        padding: 3px 5px;
-        margin-bottom: 5px;
-        display: inline-block;
-      }
-
-      .note-item {
-        font-size: 11px;
-        line-height: 1.4;
-        margin-bottom: 2px;
-      }
-
-      .rtgs-title {
-        font-weight: bold;
-        font-size: 13px;
-        margin-bottom: 5px;
-      }
-
-      /* FOOTER */
-      .footer-section {
-        display: flex;
-        height: 135px;
-        border-top: 1.5px solid #000;
-      }
-
-      .footer-left {
-        flex: 1.7;
-        padding: 8px 10px;
-        border-right: 1.5px solid #000;
-        font-size: 12px;
-        line-height: 1.6;
-      }
-
-      .footer-right {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .kec-header {
-        background: #1a3a6b;
-        color: #fff;
-        text-align: center;
-        font-size: 13px;
-        font-weight: bold;
-        padding: 5px 0;
-        border-bottom: 1px solid #000;
-      }
-
-      .footer-right-inner {
-        flex: 1;
-        padding: 0px 14px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      /* SIGNATURE AREA */
-      .sig-area {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
-
-      .sig-label-block {
-        font-size: 12px;
-        font-weight: bold;
-      }
-
-      .sig-space {
-        width: 170px;
-        height: 55px;
-        border-bottom: 1px solid #000;
-      }
-
-      /* NAME BLOCK */
-      .name-block {
-        margin-top: 5px;
-      }
-
-      .name-row {
-        display: flex;
-        align-items: center;
-        margin-bottom: 4px;
-        font-size: 13px;
-      }
-
-      .name-row .nl {
-        min-width: 75px;
-        font-weight: bold;
-        background: #ffff00;
-      }
-
-      .name-row .nv {
-        flex: 1;
-        font-weight: bold;
-        padding: 2px 8px;
-        /* text-align: center; */
-      }
-
-      .main-model {
-  text-align: center;
-  vertical-align: middle;
-  font-weight: bold;
-  font-size: 16px;
-  /* height: 38px; */
-  line-height: 25px;
-  padding: 0;
-}
-
-      /* LINKS */
-      a {
-        color: #1a3a6b;
-        text-decoration: none;
-      }
-
-      /* MOBILE LANDSCAPE VIEW */
-      @media screen and (max-width: 1100px) {
-        body {
-          overflow-x: auto;
-        }
-
-        .page {
-          width: 297mm;
-        }
-      }
-
-      /* PRINT SETTINGS */
-      @media print {
-        body {
-          background: #fff;
-          padding: 0;
-          margin: 0;
-        }
-
-        .page {
-          width: 297mm;
-          height: 210mm;
-          margin: 0;
-          border: 1px solid #000;
-        }
-
-        * {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-      }
-      /* PRINT BUTTON */
-
-      .print-btn-wrap {
-        width: 297mm;
-        margin: 15px auto 10px;
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .print-btn {
-        background: #1a3a6b;
-        color: white;
-        border: none;
-        padding: 10px 22px;
-        font-size: 13px;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 4px;
-        letter-spacing: 0.5px;
-      }
-
-      .print-btn:hover {
-        opacity: 0.9;
-      }
-
-      /* PRINT SETTINGS */
-
-      @page {
-        size: A4 landscape;
-        margin: 0;
-      }
-
-      @media print {
-        html,
-        body {
-          width: 297mm;
-          height: 210mm;
-          margin: 0 !important;
-          padding: 0 !important;
-          overflow: hidden;
-          background: #fff;
-        }
-
-        body {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-
-        .print-btn-wrap {
-          display: none !important;
-        }
-
-        .page {
-          width: 297mm;
-          height: 210mm;
-          margin: 0;
-          border: 1px solid #000;
-          box-shadow: none;
-          overflow: hidden;
-        }
-      }
-
-      /* MOBILE LANDSCAPE VIEW */
-
-      body {
-        overflow-x: auto;
-      }
-
-      @media screen and (max-width: 1100px) {
-        body {
-          padding: 10px;
-        }
-
-        .page {
-          width: 297mm;
-        }
+      .glass {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
     </style>
   </head>
 
-  <body>
-    <div class="print-btn-wrap">
-      <button onclick="printQuotation()" class="print-btn">
-        PRINT QUOTATION
-      </button>
+  <body class="flex items-center justify-center p-4 text-white">
+    <div class="glass w-full max-w-5xl rounded-3xl shadow-2xl p-6 md:p-10">
+      <!-- Heading -->
+      <div class="text-center mb-8">
+        <h1
+          class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+        >
+          Qoutation Form
+        </h1>
+        <p class="text-gray-300 mt-2">Fill details carefully</p>
+      </div>
+
+      <!-- Form -->
+      <form id="quotationForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Customer Name -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Customer Name</label>
+          <input
+            type="text"
+            placeholder="Enter customer name" id="customer_name"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Address -->
+        <div class="md:col-span-2">
+          <label class="block mb-2 text-sm font-medium">Customer Address</label>
+          <textarea
+            placeholder="Enter address" id="customer_address"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          ></textarea>
+        </div>
+
+        <!-- Phone No -->
+        <div>
+          <label class="block mb-2 text-sm font-medium"
+            >Customer Phone No</label
+          >
+          <input
+            type="tel"
+            placeholder="Enter phone number" id="customer_phone"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Model -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Model</label>
+          <select
+  id="model"
+  class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+>
+  <option value="">
+    Select Model
+  </option>
+</select>
+        </div>
+
+        <!-- Variant -->
+        <div>
+          <select
+    id="variant"
+    class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+  >
+    <option value="">
+      Select Variant
+    </option>
+  </select>
+        </div>
+
+        <!-- Color -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Color</label>
+          <input
+            type="text"
+            placeholder="Enter color" id="color"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- KEC Name -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">KEC Name</label>
+          <input
+            type="text" id="kec_name"
+            placeholder="Enter KEC name"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Mobile -->
+        <div>
+          <label  class="block mb-2 text-sm font-medium">KEC Mobile</label>
+          <input
+            type="tel" id="kec_mobile"
+            placeholder="Enter mobile number"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Customer Email</label>
+          <input
+            type="email" id="customer_email"
+            placeholder="Customer email (Optional)"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Date -->
+        <div>
+          <label class="block mb-2 text-sm font-medium">Date</label>
+          <input
+            type="date"
+            id="todayDate"
+            class="w-full rounded-xl bg-slate-800/70 border border-slate-600 px-4 py-3 outline-none focus:ring-2 focus:ring-cyan-400"
+          />
+        </div>
+
+        <!-- Submit -->
+        <div class="md:col-span-2 mt-4">
+          <button
+            type="submit"
+            class="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 py-3 text-lg font-semibold hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-cyan-500/20"
+          >
+            Submit Form
+          </button>
+        </div>
+      </form>
     </div>
-    <div class="page">
-      <!-- HEADER -->
-      <div class="main-header">KHATWANI SALES AND SERVICES L.L.P.</div>
 
-      <!-- TOP BAR -->
-      <div class="top-bar">
-        <div class="ser">SER NO. 136</div>
+    <!-- Auto Today Date -->
+  
+<script>
+      const carData=[
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.2 5MT HTE",
+    "variant": "HTE",
+    "fuel": "Petrol 1.2",
+    "color_type": "(M)",
+    "ex_showroom": 731900,
+    "tcs": 0,
+    "registration_charges": 67127,
+    "insurance": 38019,
+    "fastag": 700,
+    "on_road_price": 837746,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 884212,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.2 5MT HTE (O)",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.2",
+    "color_type": "(M)",
+    "ex_showroom": 774900,
+    "tcs": 0,
+    "registration_charges": 70567,
+    "insurance": 39154,
+    "fastag": 700,
+    "on_road_price": 885321,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 931787,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.2 5MT HTK (O)",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.2",
+    "color_type": "(M)",
+    "ex_showroom": 875900,
+    "tcs": 0,
+    "registration_charges": 78647,
+    "insurance": 42077,
+    "fastag": 700,
+    "on_road_price": 997324,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1043790,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.2 5MT HTK Plus",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.2",
+    "color_type": "(M)",
+    "ex_showroom": 912900,
+    "tcs": 0,
+    "registration_charges": 81607,
+    "insurance": 43105,
+    "fastag": 700,
+    "on_road_price": 1038312,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1084778,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.2 HTK PLUS (O)",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.2",
+    "color_type": "(M)",
+    "ex_showroom": 962900,
+    "tcs": 0,
+    "registration_charges": 85607,
+    "insurance": 44494,
+    "fastag": 700,
+    "on_road_price": 1093701,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1140167,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T iMT HTK (O)",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 914900,
+    "tcs": 0,
+    "registration_charges": 81767,
+    "insurance": 37020,
+    "fastag": 700,
+    "on_road_price": 1034387,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1080853,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T iMT HTK PLUS (O)",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 1009900,
+    "tcs": 10099,
+    "registration_charges": 109565,
+    "insurance": 39567,
+    "fastag": 700,
+    "on_road_price": 1169831,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1216297,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT HTK (O)",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 994900,
+    "tcs": 0,
+    "registration_charges": 88167,
+    "insurance": 45494,
+    "fastag": 700,
+    "on_road_price": 1129261,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1175727,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT HTK PLUS (O)",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 1089900,
+    "tcs": 10899,
+    "registration_charges": 117565,
+    "insurance": 46494,
+    "fastag": 700,
+    "on_road_price": 1265558,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1312024,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT HTX",
+    "variant": "HTX",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 1164900,
+    "tcs": 11649,
+    "registration_charges": 125065,
+    "insurance": 43732,
+    "fastag": 700,
+    "on_road_price": 1346046,
+    "extended_warranty": 19771,
+    "accessories_kit": 26695,
+    "total_price": 1392512,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT GTX Plus",
+    "variant": "GTX Plus",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 1355900,
+    "tcs": 13559,
+    "registration_charges": 144165,
+    "insurance": 48876,
+    "fastag": 700,
+    "on_road_price": 1563200,
+    "extended_warranty": 19771,
+    "accessories_kit": 28395,
+    "total_price": 1611366,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT GTX Plus",
+    "variant": "GTX Plus",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(D)",
+    "ex_showroom": 1365900,
+    "tcs": 13659,
+    "registration_charges": 145165,
+    "insurance": 49121,
+    "fastag": 700,
+    "on_road_price": 1574545,
+    "extended_warranty": 19771,
+    "accessories_kit": 28395,
+    "total_price": 1622711,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet G1.0T 7DCT X Line",
+    "variant": "X Line",
+    "fuel": "Petrol 1.0 IMT",
+    "color_type": "(M)",
+    "ex_showroom": 1369900,
+    "tcs": 13699,
+    "registration_charges": 145565,
+    "insurance": 49268,
+    "fastag": 700,
+    "on_road_price": 1579132,
+    "extended_warranty": 19771,
+    "accessories_kit": 28395,
+    "total_price": 1627298,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTE 6MT (O)",
+    "variant": "HTE",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 899900,
+    "tcs": 0,
+    "registration_charges": 98565,
+    "insurance": 42774,
+    "fastag": 700,
+    "on_road_price": 1041939,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1088706,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTE 6AT (O)",
+    "variant": "HTE",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 979900,
+    "tcs": 0,
+    "registration_charges": 106565,
+    "insurance": 43774,
+    "fastag": 700,
+    "on_road_price": 1130939,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1177706,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK 6MT (O)",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 999900,
+    "tcs": 0,
+    "registration_charges": 108565,
+    "insurance": 45474,
+    "fastag": 700,
+    "on_road_price": 1154639,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1201406,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK 6AT (O)",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1079900,
+    "tcs": 10799,
+    "registration_charges": 138163,
+    "insurance": 46474,
+    "fastag": 700,
+    "on_road_price": 1276036,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1322803,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK PLUS (O)",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1085900,
+    "tcs": 10859,
+    "registration_charges": 138883,
+    "insurance": 47852,
+    "fastag": 700,
+    "on_road_price": 1284194,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1330961,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK Plus 6MT",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1035900,
+    "tcs": 10359,
+    "registration_charges": 132883,
+    "insurance": 46486,
+    "fastag": 700,
+    "on_road_price": 1226328,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1273095,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK Plus 6AT",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1115900,
+    "tcs": 11159,
+    "registration_charges": 142483,
+    "insurance": 47986,
+    "fastag": 700,
+    "on_road_price": 1318228,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1364995,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTX 6MT",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1130900,
+    "tcs": 11309,
+    "registration_charges": 144283,
+    "insurance": 49168,
+    "fastag": 700,
+    "on_road_price": 1336360,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1383127,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 HTK Plus 6AT (O)",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1165900,
+    "tcs": 11659,
+    "registration_charges": 148483,
+    "insurance": 48986,
+    "fastag": 700,
+    "on_road_price": 1375728,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1422495,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 6AT HTX",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1209900,
+    "tcs": 12099,
+    "registration_charges": 153763,
+    "insurance": 51370,
+    "fastag": 700,
+    "on_road_price": 1427832,
+    "extended_warranty": 20072,
+    "accessories_kit": 26695,
+    "total_price": 1474599,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 6AT GTX Plus",
+    "variant": "GTX Plus",
+    "fuel": "Diesel 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1406900,
+    "tcs": 14069,
+    "registration_charges": 177403,
+    "insurance": 56962,
+    "fastag": 700,
+    "on_road_price": 1656034,
+    "extended_warranty": 20072,
+    "accessories_kit": 28395,
+    "total_price": 1704501,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 6AT GTX Plus",
+    "variant": "GTX Plus",
+    "fuel": "Diesel 1.5",
+    "color_type": "(D)",
+    "ex_showroom": 1416900,
+    "tcs": 14169,
+    "registration_charges": 178603,
+    "insurance": 57215,
+    "fastag": 700,
+    "on_road_price": 1667587,
+    "extended_warranty": 20072,
+    "accessories_kit": 28395,
+    "total_price": 1716054,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Sonet",
+    "description": "Sonet D1.5 6AT X Line",
+    "variant": "X Line",
+    "fuel": "Diesel 1.5",
+    "color_type": "(D)",
+    "ex_showroom": 1412115.59,
+    "tcs": 14121.16,
+    "registration_charges": 178028.87,
+    "insurance": 57291,
+    "fastag": 700,
+    "on_road_price": 1662256.62,
+    "extended_warranty": 20072,
+    "accessories_kit": 28395,
+    "total_price": 1710723.62,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTE 1.5 Petrol (O)",
+    "variant": "HTE",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1079276,
+    "tcs": 10792.76,
+    "registration_charges": 116502.6,
+    "insurance": 49816,
+    "fastag": 700,
+    "on_road_price": 1257087.36,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1306869.36,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK 1.5 Petrol",
+    "variant": "HTK",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1217572,
+    "tcs": 12175.72,
+    "registration_charges": 130332.2,
+    "insurance": 53971,
+    "fastag": 700,
+    "on_road_price": 1414750.92,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1464532.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK 1.5 Petrol (O)",
+    "variant": "HTK",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1257068.0,
+    "tcs": 12570.68,
+    "registration_charges": 134281.8,
+    "insurance": 55158,
+    "fastag": 700,
+    "on_road_price": 1459778.48,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1509560.48,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK Plus 1.5 Petrol (O)",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1392898.0,
+    "tcs": 13928.98,
+    "registration_charges": 147864.8,
+    "insurance": 59239,
+    "fastag": 700,
+    "on_road_price": 1614630.78,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1664412.78,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK Plus IVT 1.5 Petrol (O)",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1523910.0,
+    "tcs": 15239.1,
+    "registration_charges": 160966.0,
+    "insurance": 63176,
+    "fastag": 700,
+    "on_road_price": 1763991.1,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1813773.1,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX 1.5 Petrol",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1523910.0,
+    "tcs": 15239.1,
+    "registration_charges": 160966.0,
+    "insurance": 63176,
+    "fastag": 700,
+    "on_road_price": 1763991.1,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1815473.1,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX (O) 1.5 Petrol",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1615427,
+    "tcs": 16154.27,
+    "registration_charges": 170117.7,
+    "insurance": 65926,
+    "fastag": 700,
+    "on_road_price": 1868324.97,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1919806.97,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX IVT 1.5 Petrol",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1663593.0,
+    "tcs": 16635.93,
+    "registration_charges": 174934.3,
+    "insurance": 67373,
+    "fastag": 700,
+    "on_road_price": 1923236.23,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1974718.23,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX (O) IVT 1.5 Petrol",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1743550.0,
+    "tcs": 17435.5,
+    "registration_charges": 182930.0,
+    "insurance": 69776,
+    "fastag": 700,
+    "on_road_price": 2014391.5,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2065873.5,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK Plus iMT 1.5 Petrol",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1520057,
+    "tcs": 15200.57,
+    "registration_charges": 160580.7,
+    "insurance": 63060,
+    "fastag": 700,
+    "on_road_price": 1759598.27,
+    "extended_warranty": 23878,
+    "accessories_kit": 25904,
+    "total_price": 1809380.27,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "GTX Plus DCT 1.5T Petrol",
+    "variant": "GTX Plus",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1926582.0,
+    "tcs": 19265.82,
+    "registration_charges": 201233.2,
+    "insurance": 75275,
+    "fastag": 700,
+    "on_road_price": 2223056.02,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2274538.02,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "GTX Plus DCT 1.5T Petrol",
+    "variant": "GTX Plus",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(D)",
+    "ex_showroom": 1945849.0,
+    "tcs": 19458.49,
+    "registration_charges": 203159.9,
+    "insurance": 75854,
+    "fastag": 700,
+    "on_road_price": 2245021.39,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2296503.39,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "X LINE DCT 1.5 Petrol",
+    "variant": "X LINE",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1980529.0,
+    "tcs": 19805.29,
+    "registration_charges": 206627.9,
+    "insurance": 76896,
+    "fastag": 700,
+    "on_road_price": 2284558.19,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2336040.19,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTE MT 1.5 Diesel (O)",
+    "variant": "HTE",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1231679,
+    "tcs": 12316.79,
+    "registration_charges": 156376.48,
+    "insurance": 54395,
+    "fastag": 700,
+    "on_road_price": 1455467.27,
+    "extended_warranty": 26532,
+    "accessories_kit": 25904,
+    "total_price": 1507903.27,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK MT 1.5 Diesel",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1360144,
+    "tcs": 13601.44,
+    "registration_charges": 171792.28,
+    "insurance": 58255,
+    "fastag": 700,
+    "on_road_price": 1604492.72,
+    "extended_warranty": 26532,
+    "accessories_kit": 25904,
+    "total_price": 1656928.72,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK MT 1.5 Diesel (O)",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1407348,
+    "tcs": 14073.48,
+    "registration_charges": 177456.76,
+    "insurance": 59674,
+    "fastag": 700,
+    "on_road_price": 1659252.24,
+    "extended_warranty": 26532,
+    "accessories_kit": 25904,
+    "total_price": 1711688.24,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK Plus MT 1.5 Diesel (O)",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1543177,
+    "tcs": 15431.77,
+    "registration_charges": 193756.24,
+    "insurance": 63755,
+    "fastag": 700,
+    "on_road_price": 1816820.01,
+    "extended_warranty": 26532,
+    "accessories_kit": 25904,
+    "total_price": 1869256.01,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTK Plus AT 1.5 Diesel (O)",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1664557.0,
+    "tcs": 16645.57,
+    "registration_charges": 208321.84,
+    "insurance": 67402,
+    "fastag": 700,
+    "on_road_price": 1957626.41,
+    "extended_warranty": 26532,
+    "accessories_kit": 25904,
+    "total_price": 2010062.41,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX MT 1.5 Diesel",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1675153.0,
+    "tcs": 16751.53,
+    "registration_charges": 209593.36,
+    "insurance": 67721,
+    "fastag": 700,
+    "on_road_price": 1969918.89,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2024054.89,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX (O) MT 1.5 Diesel",
+    "variant": "HTX (O)",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1774376.0,
+    "tcs": 17743.76,
+    "registration_charges": 221500.12,
+    "insurance": 70702,
+    "fastag": 700,
+    "on_road_price": 2085021.88,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2139157.88,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "HTX AT 1.5 Diesel",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1802313,
+    "tcs": 18023.13,
+    "registration_charges": 224852.56,
+    "insurance": 71541,
+    "fastag": 700,
+    "on_road_price": 2117429.69,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2171565.69,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "GTX Plus AT 1.5 Diesel",
+    "variant": "GTX Plus",
+    "fuel": "Diesel 1.5 iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1926582.0,
+    "tcs": 19265.82,
+    "registration_charges": 239764.84,
+    "insurance": 75275,
+    "fastag": 700,
+    "on_road_price": 2261587.66,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2315723.66,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "GTX Plus AT 1.5 Diesel",
+    "variant": "GTX Plus",
+    "fuel": "Diesel 1.5 iMT",
+    "color_type": "(D)",
+    "ex_showroom": 1945849.0,
+    "tcs": 19458.49,
+    "registration_charges": 242076.88,
+    "insurance": 75854,
+    "fastag": 700,
+    "on_road_price": 2283938.37,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2338074.37,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Seltos",
+    "description": "X Line AT 1.5 Diesel",
+    "variant": "X Line",
+    "fuel": "Diesel 1.5 iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1980529.0,
+    "tcs": 19805.29,
+    "registration_charges": 246238.48,
+    "insurance": 76896,
+    "fastag": 700,
+    "on_road_price": 2324168.77,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2378304.77,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens",
+    "description": "Carens G1.5 6MT Premium 7 (O)",
+    "variant": "Premium",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1099900,
+    "tcs": 10999,
+    "registration_charges": 118565,
+    "insurance": 47268,
+    "fastag": 700,
+    "on_road_price": 1277432,
+    "extended_warranty": 23877,
+    "accessories_kit": 24500,
+    "total_price": 1325809,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens",
+    "description": "Carens D1.5 6MT Premium (O) 7",
+    "variant": "Premium 7",
+    "fuel": "Diesel 1.5 MT",
+    "color_type": "(M)",
+    "ex_showroom": 1285900,
+    "tcs": 12859,
+    "registration_charges": 162883,
+    "insurance": 52113,
+    "fastag": 700,
+    "on_road_price": 1514455,
+    "extended_warranty": 26532,
+    "accessories_kit": 24500,
+    "total_price": 1565487,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carnival",
+    "description": "Kia Carnival D2.2 8AT Limousine Plus",
+    "variant": "Limousine Plus",
+    "fuel": "Diesel 2.2 8AT",
+    "ex_showroom": 5942459,
+    "tcs": 59424.59,
+    "registration_charges": 959368.44,
+    "insurance": 210009,
+    "fastag": 700,
+    "on_road_price": 7171961.03,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 6MT HTE",
+    "variant": "HTE",
+    "fuel": "Petrol 1.0T 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 839900,
+    "tcs": 0,
+    "registration_charges": 75767,
+    "fastag": 700,
+    "insurance": 34272,
+    "on_road_price": 950639,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 6MT HTE(O)",
+    "variant": "HTE(O)",
+    "fuel": "Petrol 1.0T 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 919900.0,
+    "tcs": 0,
+    "registration_charges": 82167.0,
+    "fastag": 700,
+    "insurance": 36343,
+    "on_road_price": 1039110.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 6MT HTK (EX)",
+    "variant": "HTK (EX)",
+    "fuel": "Petrol 1.0T 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 979900.0,
+    "tcs": 0,
+    "registration_charges": 86967.0,
+    "fastag": 700,
+    "insurance": 37896,
+    "on_road_price": 1105463.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 6MT HTK Plus",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.0T 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 1073900.0,
+    "tcs": 10739.0,
+    "registration_charges": 115965.0,
+    "fastag": 700,
+    "insurance": 40330,
+    "on_road_price": 1241634.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 6MT HTK Plus(O)",
+    "variant": "HTK Plus(O)",
+    "fuel": "Petrol 1.0T 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 1199900,
+    "tcs": 11999,
+    "registration_charges": 128565,
+    "fastag": 700,
+    "insurance": 43592,
+    "on_road_price": 1384756,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 7DCT HTK Plus",
+    "variant": "HTK Plus",
+    "fuel": "Petrol 1.0T 7DCT",
+    "transmission": "7 DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1193900,
+    "tcs": 11939,
+    "registration_charges": 127965,
+    "fastag": 700,
+    "insurance": 43437,
+    "on_road_price": 1377941,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 7DCT HTK Plus(O)",
+    "variant": "HTK Plus(O)",
+    "fuel": "Petrol 1.0T 7DCT",
+    "transmission": "7 DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1319900,
+    "tcs": 13199,
+    "registration_charges": 140565,
+    "fastag": 700,
+    "insurance": 46699,
+    "on_road_price": 1521063,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 7DCT HTX",
+    "variant": "HTX",
+    "fuel": "Petrol 1.0T 7DCT",
+    "transmission": "7 DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1399900,
+    "tcs": 13999,
+    "registration_charges": 148565,
+    "fastag": 700,
+    "insurance": 48771,
+    "on_road_price": 1611935,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros G1.0T 7DCT HTX(O)",
+    "variant": "HTX(O)",
+    "fuel": "Petrol 1.0T 7DCT",
+    "transmission": "7 DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1499900.0,
+    "tcs": 14999.0,
+    "registration_charges": 158565.0,
+    "fastag": 700,
+    "insurance": 51360,
+    "on_road_price": 1725524.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 22884.92,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6MT HTE(O)",
+    "variant": "HTE(O)",
+    "fuel": "Diesel 1.5 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 999900.0,
+    "tcs": 0,
+    "registration_charges": 108565.0,
+    "fastag": 700,
+    "insurance": 44569,
+    "on_road_price": 1153734,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6MT HTK(EX)",
+    "variant": "HTK(EX)",
+    "fuel": "Diesel 1.5 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 1059900.0,
+    "tcs": 10599.0,
+    "registration_charges": 135763.0,
+    "fastag": 700,
+    "insurance": 46201,
+    "on_road_price": 1253163.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6MT HTK Plus",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 1153900,
+    "tcs": 11539,
+    "registration_charges": 147043,
+    "fastag": 700,
+    "insurance": 48756,
+    "on_road_price": 1361938,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6MT HTK Plus (O)",
+    "variant": "HTK Plus (O)",
+    "fuel": "Diesel 1.5 6MT",
+    "transmission": "MT",
+    "color_type": "(M)",
+    "ex_showroom": 1279900,
+    "tcs": 12799,
+    "registration_charges": 162163,
+    "fastag": 700,
+    "insurance": 52181,
+    "on_road_price": 1507743,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6AT HTK Plus",
+    "variant": "HTK Plus",
+    "fuel": "Diesel 1.5 6AT",
+    "transmission": "AT",
+    "color_type": "(M)",
+    "ex_showroom": 1273900,
+    "tcs": 12739,
+    "registration_charges": 161443,
+    "fastag": 700,
+    "insurance": 52018,
+    "on_road_price": 1500800,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6AT HTK Plus(O)",
+    "variant": "HTK Plus(O)",
+    "fuel": "Diesel 1.5 6AT",
+    "transmission": "AT",
+    "color_type": "(M)",
+    "ex_showroom": 1399900,
+    "tcs": 13999,
+    "registration_charges": 176563,
+    "fastag": 700,
+    "insurance": 55444,
+    "on_road_price": 1646606,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6AT HTX",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 6AT",
+    "transmission": "AT",
+    "color_type": "(M)",
+    "ex_showroom": 1479900.0,
+    "tcs": 14799.0,
+    "registration_charges": 186163.0,
+    "fastag": 700,
+    "insurance": 57619,
+    "on_road_price": 1739181.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Syros",
+    "description": "Syros D1.5 6AT HTX(O)",
+    "variant": "HTX(O)",
+    "fuel": "Diesel 1.5 6AT",
+    "transmission": "AT",
+    "color_type": "(M)",
+    "ex_showroom": 1579900.0,
+    "tcs": 15799.0,
+    "registration_charges": 198163.0,
+    "fastag": 700,
+    "insurance": 60337,
+    "on_road_price": 1854899.0,
+    "accessories_kit": 26069,
+    "extended_warranty": 25430.18,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 MT HTM 7",
+    "variant": "HTM",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1130412,
+    "tcs": 11304.12,
+    "registration_charges": 121616.2,
+    "fastag": 700,
+    "insurance": 49776,
+    "on_road_price": 1313808.32,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1363885.32,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 MT HTE 7",
+    "variant": "HTE",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1120900,
+    "tcs": 11209,
+    "registration_charges": 120665,
+    "fastag": 700,
+    "insurance": 49504,
+    "on_road_price": 1302978,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1353055,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 MT HTE (O) 7",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1216900,
+    "tcs": 12169,
+    "registration_charges": 130265,
+    "fastag": 700,
+    "insurance": 52123,
+    "on_road_price": 1412157,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1462234,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 MT HTE (EX) 7",
+    "variant": "HTE (EX)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1267900,
+    "tcs": 12679,
+    "registration_charges": 135365,
+    "fastag": 700,
+    "insurance": 54123,
+    "on_road_price": 1470767,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1520844,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTE (O) 7",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1299900,
+    "tcs": 12999,
+    "registration_charges": 138565,
+    "fastag": 700,
+    "insurance": 54480,
+    "on_road_price": 1506644,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1556721,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTE (EX) 7",
+    "variant": "HTE (EX)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1354900,
+    "tcs": 13549,
+    "registration_charges": 144065,
+    "fastag": 700,
+    "insurance": 56480,
+    "on_road_price": 1569694,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1619771,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTK PLUS 7",
+    "variant": "HTK PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1517990,
+    "tcs": 15179.9,
+    "registration_charges": 160374,
+    "fastag": 700,
+    "insurance": 59718,
+    "on_road_price": 1753961.9,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1804038.9,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTK PLUS (O) 7",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1619900,
+    "tcs": 16199,
+    "registration_charges": 170565,
+    "fastag": 700,
+    "insurance": 61813,
+    "on_road_price": 1869177,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1919254,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTK PLUS 6",
+    "variant": "HTK PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1662900,
+    "tcs": 16629,
+    "registration_charges": 174865,
+    "fastag": 700,
+    "insurance": 63647,
+    "on_road_price": 1918741,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1968818,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTK PLUS 7",
+    "variant": "HTK PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1662900,
+    "tcs": 16629,
+    "registration_charges": 174865,
+    "fastag": 700,
+    "insurance": 63647,
+    "on_road_price": 1918741,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 1968818,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTK PLUS (O) 6",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1763900,
+    "tcs": 17639,
+    "registration_charges": 184965,
+    "fastag": 700,
+    "insurance": 65742,
+    "on_road_price": 2032946,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2083023,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTK PLUS (O) 7",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1763900,
+    "tcs": 17639,
+    "registration_charges": 184965,
+    "fastag": 700,
+    "insurance": 65742,
+    "on_road_price": 2032946,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2083023,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTX 7",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1785900,
+    "tcs": 17859,
+    "registration_charges": 187165,
+    "fastag": 700,
+    "insurance": 67575,
+    "on_road_price": 2059199,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2109276,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. IMT HTX 7",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1814900,
+    "tcs": 18149,
+    "registration_charges": 190065,
+    "fastag": 700,
+    "insurance": 68361,
+    "on_road_price": 2092175,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2142252,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTX PLUS 6",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1881900,
+    "tcs": 18819,
+    "registration_charges": 196765,
+    "fastag": 700,
+    "insurance": 68394,
+    "on_road_price": 2166578,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2216655,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. MT HTX PLUS 7",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1881900,
+    "tcs": 18819,
+    "registration_charges": 196765,
+    "fastag": 700,
+    "insurance": 68394,
+    "on_road_price": 2166578,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2216655,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. IMT HTX PLUS 6",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1910900,
+    "tcs": 19109,
+    "registration_charges": 199665,
+    "fastag": 700,
+    "insurance": 70980,
+    "on_road_price": 2201354,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2251431,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. IMT HTX PLUS 7",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1910900,
+    "tcs": 19109,
+    "registration_charges": 199665,
+    "fastag": 700,
+    "insurance": 70980,
+    "on_road_price": 2201354,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2251431,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX (O) 6",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1939900,
+    "tcs": 19399,
+    "registration_charges": 202565,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2233925,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2284002,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX (O) 7",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1939900,
+    "tcs": 19399,
+    "registration_charges": 202565,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2233925,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2284002,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT GTX 6",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1980900,
+    "tcs": 19809,
+    "registration_charges": 206665,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2279435,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2329512,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT GTX 7",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1980900,
+    "tcs": 19809,
+    "registration_charges": 206665,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2279435,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2329512,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX (O) (A) 6",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1985900,
+    "tcs": 19859,
+    "registration_charges": 207165,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2284985,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2335062,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX (O) (A) 7",
+    "variant": "HTX (O)",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 1985900,
+    "tcs": 19859,
+    "registration_charges": 207165,
+    "fastag": 700,
+    "insurance": 71361,
+    "on_road_price": 2284985,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2335062,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX PLUS 6",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2084900,
+    "tcs": 20849,
+    "registration_charges": 300461,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2482604,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2532681,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT HTX PLUS 7",
+    "variant": "HTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2084900,
+    "tcs": 20849,
+    "registration_charges": 300461,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2482604,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2532681,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT GTX PLUS 6",
+    "variant": "GTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2156900,
+    "tcs": 21569,
+    "registration_charges": 310541,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2565404,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2615481,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT GTX PLUS 7",
+    "variant": "GTX PLUS",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2156900,
+    "tcs": 21569,
+    "registration_charges": 310541,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2565404,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2615481,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT X-LINE 6",
+    "variant": "X-LINE 6",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2156900,
+    "tcs": 21569,
+    "registration_charges": 310541,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2565404,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2615481,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS G1.5 T. DCT X-LINE 7",
+    "variant": "X-LINE 7",
+    "fuel": "Petrol 1.5 Turbo",
+    "color_type": "(M)",
+    "ex_showroom": 2156900,
+    "tcs": 21569,
+    "registration_charges": 310541,
+    "fastag": 700,
+    "insurance": 75694,
+    "on_road_price": 2565404,
+    "accessories_kit": 26200,
+    "extended_warranty": 23877,
+    "total_price": 2615481,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTM 7",
+    "variant": "HTM",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1330412,
+    "tcs": 13304.12,
+    "registration_charges": 168224.44,
+    "fastag": 700,
+    "insurance": 55018,
+    "on_road_price": 1567658.56,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1620390.56,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTE 7",
+    "variant": "HTE",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1313900,
+    "tcs": 13139,
+    "registration_charges": 166243,
+    "fastag": 700,
+    "insurance": 54742,
+    "on_road_price": 1548724,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1601456,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTE (O) 7",
+    "variant": "HTE (O)",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1414900,
+    "tcs": 14149,
+    "registration_charges": 178363,
+    "fastag": 700,
+    "insurance": 57492,
+    "on_road_price": 1665604,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1718336,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTK PLUS (PVB) 7",
+    "variant": "HTK PLUS (PVB)",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1427272,
+    "tcs": 14272.72,
+    "registration_charges": 179847.64,
+    "fastag": 700,
+    "insurance": 62599,
+    "on_road_price": 1684691.36,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1737423.36,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTE (EX) 7",
+    "variant": "HTE (EX)",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1465900,
+    "tcs": 14659,
+    "registration_charges": 184483,
+    "fastag": 700,
+    "insurance": 59492,
+    "on_road_price": 1725234,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1777966,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTK PLUS 7",
+    "variant": "HTK PLUS",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1621900,
+    "tcs": 16219,
+    "registration_charges": 203203,
+    "fastag": 700,
+    "insurance": 62599,
+    "on_road_price": 1904621,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 1957353,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTK PLUS (O) 7",
+    "variant": "HTK PLUS (O)",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1699900,
+    "tcs": 16999,
+    "registration_charges": 212563,
+    "fastag": 700,
+    "insurance": 64694,
+    "on_road_price": 1994856,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 2047588,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 AT HTK PLUS 6",
+    "variant": "HTK PLUS",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1734900,
+    "tcs": 17349,
+    "registration_charges": 216763,
+    "fastag": 700,
+    "insurance": 66528,
+    "on_road_price": 2036240,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 2088972,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 AT HTK PLUS 7",
+    "variant": "HTK PLUS",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1734900,
+    "tcs": 17349,
+    "registration_charges": 216763,
+    "fastag": 700,
+    "insurance": 66528,
+    "on_road_price": 2036240,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 2088972,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis",
+    "description": "CLAVIS D1.5 MT HTX 7",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 VGT",
+    "color_type": "(M)",
+    "ex_showroom": 1878900,
+    "tcs": 18789,
+    "registration_charges": 234043,
+    "fastag": 700,
+    "insurance": 70456,
+    "on_road_price": 2202888,
+    "accessories_kit": 26200,
+    "extended_warranty": 26532,
+    "total_price": 2255620,
+    "temp_registration": 6500
+  },
+  {
+    "model": "EV6",
+    "description": "EV6 - GT LINE",
+    "variant": "GT LINE",
+    "fuel": "Electric",
+    "ex_showroom": 6096638,
+    "tcs": 60966.38,
+    "registration_charges": 252440.52,
+    "insurance": 230950,
+    "fastag": 500,
+    "on_road_price": 6641494.9,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "EV6",
+    "description": "EV6 - GT LINE AWD",
+    "variant": "GT LINE",
+    "fuel": "Electric",
+    "ex_showroom": 6596638,
+    "tcs": 65966.38,
+    "registration_charges": 272440.52,
+    "insurance": 249920,
+    "fastag": 500,
+    "on_road_price": 7185464.9,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV HTK Plus 7",
+    "variant": "HTK Plus",
+    "fuel": "Electric",
+    "ex_showroom": 1799000,
+    "tcs": 17990,
+    "registration_charges": 80535,
+    "insurance": 71960,
+    "fastag": 700,
+    "on_road_price": 1970185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV HTM 7",
+    "variant": "HTM",
+    "fuel": "Electric",
+    "ex_showroom": 1819000,
+    "tcs": 18190,
+    "registration_charges": 81335,
+    "insurance": 72760,
+    "fastag": 700,
+    "on_road_price": 1991985,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV SR HTX (E) 6",
+    "variant": "SR HTX (E)",
+    "fuel": "Electric",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 88535,
+    "insurance": 79960,
+    "fastag": 700,
+    "on_road_price": 2188185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV HTX (E) 7",
+    "variant": "HTX (E)",
+    "fuel": "Electric",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 88535,
+    "insurance": 79960,
+    "fastag": 700,
+    "on_road_price": 2188185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV SR HTX 6",
+    "variant": "SR HTX",
+    "fuel": "Electric",
+    "ex_showroom": 2049000,
+    "tcs": 20490,
+    "registration_charges": 90535,
+    "insurance": 81960,
+    "fastag": 700,
+    "on_road_price": 2242685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV HTX 7",
+    "variant": "HTX",
+    "fuel": "Electric",
+    "ex_showroom": 2049000,
+    "tcs": 20490,
+    "registration_charges": 90535,
+    "insurance": 81960,
+    "fastag": 700,
+    "on_road_price": 2242685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR HTX (E) 6",
+    "variant": "LR HTX (E)",
+    "fuel": "Electric",
+    "ex_showroom": 2199000,
+    "tcs": 21990,
+    "registration_charges": 96535,
+    "insurance": 87960,
+    "fastag": 700,
+    "on_road_price": 2406185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV ER HTX (E) 7",
+    "variant": "ER HTX (E)",
+    "fuel": "Electric",
+    "ex_showroom": 2199000,
+    "tcs": 21990,
+    "registration_charges": 96535,
+    "insurance": 87960,
+    "fastag": 700,
+    "on_road_price": 2406185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR HTX 6",
+    "variant": "LR HTX",
+    "fuel": "Electric",
+    "ex_showroom": 2249000,
+    "tcs": 22490,
+    "registration_charges": 98535,
+    "insurance": 89960,
+    "fastag": 700,
+    "on_road_price": 2460685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV ER HTX 7",
+    "variant": "ER HTX",
+    "fuel": "Electric",
+    "ex_showroom": 2249000,
+    "tcs": 22490,
+    "registration_charges": 98535,
+    "insurance": 89960,
+    "fastag": 700,
+    "on_road_price": 2460685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR GTX 6",
+    "variant": "LR GTX",
+    "fuel": "Electric",
+    "ex_showroom": 2299000,
+    "tcs": 22990,
+    "registration_charges": 100535,
+    "insurance": 91960,
+    "fastag": 700,
+    "on_road_price": 2515185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR GTX 7",
+    "variant": "LR GTX",
+    "fuel": "Electric",
+    "ex_showroom": 2299000,
+    "tcs": 22990,
+    "registration_charges": 100535,
+    "insurance": 91960,
+    "fastag": 700,
+    "on_road_price": 2515185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR HTX Plus 6",
+    "variant": "LR HTX Plus",
+    "fuel": "Electric",
+    "ex_showroom": 2449000,
+    "tcs": 24490,
+    "registration_charges": 106535,
+    "insurance": 97960,
+    "fastag": 700,
+    "on_road_price": 2678685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV ER HTX Plus 7",
+    "variant": "ER HTX Plus",
+    "fuel": "Electric",
+    "ex_showroom": 2449000,
+    "tcs": 24490,
+    "registration_charges": 106535,
+    "insurance": 97960,
+    "fastag": 700,
+    "on_road_price": 2678685,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR GTX PLUS 6",
+    "variant": "LR GTX PLUS",
+    "fuel": "Electric",
+    "ex_showroom": 2499000,
+    "tcs": 24990,
+    "registration_charges": 108535,
+    "insurance": 99960,
+    "fastag": 700,
+    "on_road_price": 2733185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR GTX PLUS 7",
+    "variant": "LR GTX PLUS",
+    "fuel": "Electric",
+    "ex_showroom": 2499000,
+    "tcs": 24990,
+    "registration_charges": 108535,
+    "insurance": 99960,
+    "fastag": 700,
+    "on_road_price": 2733185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR X-LINE 6",
+    "variant": "X-LINE 6",
+    "fuel": "Electric",
+    "ex_showroom": 2499000,
+    "tcs": 24990,
+    "registration_charges": 108535,
+    "insurance": 99960,
+    "fastag": 700,
+    "on_road_price": 2733185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "Carens Clavis EV",
+    "description": "Carens Clavis EV LR X-LINE 7",
+    "variant": "X-LINE 7",
+    "fuel": "Electric",
+    "ex_showroom": 2499000,
+    "tcs": 24990,
+    "registration_charges": 108535,
+    "insurance": 99960,
+    "fastag": 700,
+    "on_road_price": 2733185,
+    "extended_warranty": null,
+    "accessories_kit": null,
+    "total_price": null,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE G1.5 PETROL",
+    "variant": "HTE",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1099000,
+    "tcs": 10990,
+    "registration_charges": 118475,
+    "insurance": 50908.48,
+    "fastag": 700,
+    "on_road_price": 1280073.48,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1331555.48,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE (O) G1.5 PETROL",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1209000,
+    "tcs": 12090,
+    "registration_charges": 129475,
+    "insurance": 54213.73,
+    "fastag": 700,
+    "on_road_price": 1405478.73,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1456960.73,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK G1.5 PETROL",
+    "variant": "HTK",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1309000,
+    "tcs": 13090,
+    "registration_charges": 139475,
+    "insurance": 57218.5,
+    "fastag": 700,
+    "on_road_price": 1519483.5,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1570965.5,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) G1.5 PETROL",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1419000,
+    "tcs": 14190,
+    "registration_charges": 150475,
+    "insurance": 60523.75,
+    "fastag": 700,
+    "on_road_price": 1644888.75,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1696370.75,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX G1.5 PETROL",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1559000,
+    "tcs": 15590,
+    "registration_charges": 164475,
+    "insurance": 64730.43,
+    "fastag": 700,
+    "on_road_price": 1804495.43,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1855977.43,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX (A) G1.5 PETROL",
+    "variant": "HTX (A)",
+    "fuel": "Petrol 1.5",
+    "color_type": "(M)",
+    "ex_showroom": 1669000,
+    "tcs": 16690,
+    "registration_charges": 175475,
+    "insurance": 68035.69,
+    "fastag": 700,
+    "on_road_price": 1929900.69,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1981382.69,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE (O) G1.5 IVT PETROL",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1339000,
+    "tcs": 13390,
+    "registration_charges": 142475,
+    "insurance": 58119.93,
+    "fastag": 700,
+    "on_road_price": 1553684.93,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1605166.93,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK G1.5 IVT PETROL",
+    "variant": "HTK",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1439000,
+    "tcs": 14390,
+    "registration_charges": 152475,
+    "insurance": 61124.71,
+    "fastag": 700,
+    "on_road_price": 1667689.71,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1719171.71,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) G1.5 IVT PETROL",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1549000,
+    "tcs": 15490,
+    "registration_charges": 163475,
+    "insurance": 64429.96,
+    "fastag": 700,
+    "on_road_price": 1793094.96,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1844576.96,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX G1.5 IVT PETROL",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1689000,
+    "tcs": 16890,
+    "registration_charges": 177475,
+    "insurance": 68636.64,
+    "fastag": 700,
+    "on_road_price": 1952701.64,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2004183.64,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX (A) G1.5 IVT PETROL",
+    "variant": "HTX (A)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1799000,
+    "tcs": 17990,
+    "registration_charges": 188475,
+    "insurance": 71941.89,
+    "fastag": 700,
+    "on_road_price": 2078106.89,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2129588.89,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX G1.5 IVT PETROL",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1839000,
+    "tcs": 18390,
+    "registration_charges": 192475,
+    "insurance": 73143.8,
+    "fastag": 700,
+    "on_road_price": 2123708.8,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2175190.8,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX G1.5 IVT PETROL",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(D)",
+    "ex_showroom": 1859000,
+    "tcs": 18590,
+    "registration_charges": 194475,
+    "insurance": 73744.75,
+    "fastag": 700,
+    "on_road_price": 2146509.75,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2197991.75,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE G1.5 IVT PETROL",
+    "variant": "X-LINE",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1839000,
+    "tcs": 18390,
+    "registration_charges": 192475,
+    "insurance": 73143.8,
+    "fastag": 700,
+    "on_road_price": 2123708.8,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2175190.8,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) G1.5 IVT PETROL",
+    "variant": "GTX (A)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1949000,
+    "tcs": 19490,
+    "registration_charges": 203475,
+    "insurance": 76449.05,
+    "fastag": 700,
+    "on_road_price": 2249114.05,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2300596.05,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) G1.5 IVT PETROL",
+    "variant": "GTX (A)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(D)",
+    "ex_showroom": 1969000,
+    "tcs": 19690,
+    "registration_charges": 205475,
+    "insurance": 77050.01,
+    "fastag": 700,
+    "on_road_price": 2271915.01,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2323397.01,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE (A) G1.5 IVT PETROL",
+    "variant": "X-LINE (A)",
+    "fuel": "Petrol 1.5 IVT",
+    "color_type": "(M)",
+    "ex_showroom": 1949000,
+    "tcs": 19490,
+    "registration_charges": 203475,
+    "insurance": 76449.05,
+    "fastag": 700,
+    "on_road_price": 2249114.05,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2300596.05,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE (O) G1.5 T- 6iMT",
+    "variant": "HTE (O)",
+    "fuel": "Petrol 1.5T 6iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1289000,
+    "tcs": 12890,
+    "registration_charges": 137475,
+    "insurance": 56617.55,
+    "fastag": 700,
+    "on_road_price": 1496682.55,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1548164.55,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK G1.5 T- 6iMT",
+    "variant": "HTK",
+    "fuel": "Petrol 1.5T 6iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1389000,
+    "tcs": 13890,
+    "registration_charges": 147475,
+    "insurance": 59622.32,
+    "fastag": 700,
+    "on_road_price": 1610687.32,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1662169.32,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) G1.5 T- 6iMT",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.5T 6iMT",
+    "color_type": "(M)",
+    "ex_showroom": 1499000,
+    "tcs": 14990,
+    "registration_charges": 158475,
+    "insurance": 62927.57,
+    "fastag": 700,
+    "on_road_price": 1736092.57,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1787574.57,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) G1.5 T-7DCT",
+    "variant": "HTK (O)",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1629000,
+    "tcs": 16290,
+    "registration_charges": 171475,
+    "insurance": 66833.78,
+    "fastag": 700,
+    "on_road_price": 1884298.78,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 1935780.78,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX G1.5 T-7DCT",
+    "variant": "HTX",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1769000,
+    "tcs": 17690,
+    "registration_charges": 185475,
+    "insurance": 71040.46,
+    "fastag": 700,
+    "on_road_price": 2043905.46,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2095387.46,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX (A) G1.5 T-7DCT",
+    "variant": "HTX (A)",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1879000,
+    "tcs": 18790,
+    "registration_charges": 196475,
+    "insurance": 74345.71,
+    "fastag": 700,
+    "on_road_price": 2169310.71,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2220792.71,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX G1.5 T-7DCT",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1919000,
+    "tcs": 19190,
+    "registration_charges": 200475,
+    "insurance": 75547.62,
+    "fastag": 700,
+    "on_road_price": 2214912.62,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2266394.62,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX G1.5 T-7DCT",
+    "variant": "GTX",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(D)",
+    "ex_showroom": 1939000,
+    "tcs": 19390,
+    "registration_charges": 202475,
+    "insurance": 76148.57,
+    "fastag": 700,
+    "on_road_price": 2237713.57,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2289195.57,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE G1.5 T-7DCT",
+    "variant": "X-LINE",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1919000,
+    "tcs": 19190,
+    "registration_charges": 200475,
+    "insurance": 75547.62,
+    "fastag": 700,
+    "on_road_price": 2214912.62,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2266394.62,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) G1.5 T-7DCT",
+    "variant": "GTX (A)",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 208475,
+    "insurance": 77951.44,
+    "fastag": 700,
+    "on_road_price": 2306116.44,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2357598.44,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) G1.5 T-7DCT",
+    "variant": "GTX (A)",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(D)",
+    "ex_showroom": 2019000,
+    "tcs": 20190,
+    "registration_charges": 291235,
+    "insurance": 78552.39,
+    "fastag": 700,
+    "on_road_price": 2409677.39,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2461159.39,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE (A) G1.5 T-7DCT",
+    "variant": "X-LINE (A)",
+    "fuel": "Petrol 1.5T 7DCT",
+    "color_type": "(M)",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 208475,
+    "insurance": 77951.44,
+    "fastag": 700,
+    "on_road_price": 2306116.44,
+    "extended_warranty": 23878,
+    "accessories_kit": 27604,
+    "total_price": 2357598.44,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE 1.5D CRDi 6MT",
+    "variant": "HTE",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1259000,
+    "tcs": 12590,
+    "registration_charges": 159655,
+    "insurance": 55716.12,
+    "fastag": 700,
+    "on_road_price": 1487661.12,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1541797.12,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE (O) 1.5D CRDi 6MT",
+    "variant": "HTE (O)",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1369000,
+    "tcs": 13690,
+    "registration_charges": 172855,
+    "insurance": 59021.37,
+    "fastag": 700,
+    "on_road_price": 1615266.37,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1669402.37,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK 1.5D CRDi 6MT",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1469000,
+    "tcs": 14690,
+    "registration_charges": 184855,
+    "insurance": 62026.14,
+    "fastag": 700,
+    "on_road_price": 1731271.14,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1785407.14,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) 1.5D CRDi 6MT",
+    "variant": "HTK (O)",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1579000,
+    "tcs": 15790,
+    "registration_charges": 198055,
+    "insurance": 65331.39,
+    "fastag": 700,
+    "on_road_price": 1858876.39,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1913012.39,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX 1.5D CRDi 6MT",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1719000,
+    "tcs": 17190,
+    "registration_charges": 214855,
+    "insurance": 69538.07,
+    "fastag": 700,
+    "on_road_price": 2021283.07,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2075419.07,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX (A) 1.5D CRDi 6MT",
+    "variant": "HTX (A)",
+    "fuel": "Diesel 1.5 6MT",
+    "color_type": "(M)",
+    "ex_showroom": 1829000,
+    "tcs": 18290,
+    "registration_charges": 228055,
+    "insurance": 72843.32,
+    "fastag": 700,
+    "on_road_price": 2148888.32,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2203024.32,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTE (O) 1.5D CRDi 6AT",
+    "variant": "HTE (O)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1499000,
+    "tcs": 14990,
+    "registration_charges": 188455,
+    "insurance": 62927.57,
+    "fastag": 700,
+    "on_road_price": 1766072.57,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1820208.57,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK 1.5D CRDi 6AT",
+    "variant": "HTK",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1599000,
+    "tcs": 15990,
+    "registration_charges": 200455,
+    "insurance": 65932.34,
+    "fastag": 700,
+    "on_road_price": 1882077.34,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 1936213.34,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTK (O) 1.5D CRDi 6AT",
+    "variant": "HTK (O)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1709000,
+    "tcs": 17090,
+    "registration_charges": 213655,
+    "insurance": 69237.59,
+    "fastag": 700,
+    "on_road_price": 2009682.59,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2063818.59,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX 1.5D CRDi 6AT",
+    "variant": "HTX",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1849000,
+    "tcs": 18490,
+    "registration_charges": 230455,
+    "insurance": 73444.28,
+    "fastag": 700,
+    "on_road_price": 2172089.28,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2226225.28,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "HTX (A) 1.5D CRDi 6AT",
+    "variant": "HTX (A)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1959000,
+    "tcs": 19590,
+    "registration_charges": 243655,
+    "insurance": 76749.53,
+    "fastag": 700,
+    "on_road_price": 2299694.53,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2353830.53,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX 1.5D CRDi 6AT",
+    "variant": "GTX",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1979000,
+    "tcs": 19790,
+    "registration_charges": 246055,
+    "insurance": 77350.48,
+    "fastag": 700,
+    "on_road_price": 2322895.48,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2377031.48,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX 1.5D CRDi 6AT",
+    "variant": "GTX",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(D)",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 248455,
+    "insurance": 77951.44,
+    "fastag": 700,
+    "on_road_price": 2346096.44,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2400232.44,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE 1.5D CRDi 6AT",
+    "variant": "X-LINE",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1979000,
+    "tcs": 19790,
+    "registration_charges": 246055,
+    "insurance": 77350.48,
+    "fastag": 700,
+    "on_road_price": 2322895.48,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2377031.48,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) 1.5D CRDi 6AT",
+    "variant": "GTX (A)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 248455,
+    "insurance": 77951.44,
+    "fastag": 700,
+    "on_road_price": 2346096.44,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2400232.44,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "GTX (A) 1.5D CRDi 6AT",
+    "variant": "GTX (A)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(D)",
+    "ex_showroom": 2019000,
+    "tcs": 20190,
+    "registration_charges": 331615,
+    "insurance": 78552.39,
+    "fastag": 700,
+    "on_road_price": 2450057.39,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2504193.39,
+    "temp_registration": 6500
+  },
+  {
+    "model": "New Seltos",
+    "description": "X-LINE (A) 1.5D CRDi 6AT",
+    "variant": "X-LINE (A)",
+    "fuel": "Diesel 1.5 6AT",
+    "color_type": "(M)",
+    "ex_showroom": 1999000,
+    "tcs": 19990,
+    "registration_charges": 248455,
+    "insurance": 77951.44,
+    "fastag": 700,
+    "on_road_price": 2346096.44,
+    "extended_warranty": 26532,
+    "accessories_kit": 27604,
+    "total_price": 2400232.44,
+    "temp_registration": 6500
+  }
+]
 
-        <div class="quotation-title">QUOTATION</div>
+    </script>
+<script>
 
-        <div class="date-sec">
-          <span>DATE</span>
-          <span>07-05-2026</span>
-        </div>
-      </div>
+window.addEventListener("DOMContentLoaded", () => {
 
-      <!-- CUSTOMER INFO -->
-      <table class="customer-table">
-        <tr>
-          <td class="lbl">CUSTOMER NAME :-</td>
-          <td class="val">MR SUMIT SHARMA</td>
-        </tr>
+  // TODAY DATE
+  const today = new Date()
+    .toISOString()
+    .split("T")[0];
 
-        <tr>
-          <td class="lbl">ADDRESS :-</td>
-          <td class="val">JABALPUR</td>
-        </tr>
+  document.getElementById("todayDate").value =
+    today;
 
-        <tr>
-          <td class="lbl">PHONE NO :-</td>
-          <td class="val"></td>
-        </tr>
+  // SELECTS
+  const modelSelect =
+    document.getElementById("model");
 
-        <tr>
-          <td class="lbl">EMAIL :-</td>
-          <td class="val"></td>
-        </tr>
-      </table>
+  const variantSelect =
+    document.getElementById("variant");
 
-      <!-- MAIN TABLE -->
-      <table class="main-table">
-        <colgroup>
-          <col style="width: 22%" />
-          <col style="width: 12%" />
-          <col style="width: 12%" />
-          <col style="width: 12%" />
-          <col style="width: 12%" />
-          <col style="width: 12%" />
-          <col style="width: 8%" />
-          <col style="width: 10%" />
-        </colgroup>
+  // UNIQUE MODELS
+  const uniqueModels = [
+    ...new Set(
+      carData.map(car => car.model)
+    )
+  ];
 
-        <!-- TOP VEHICLE INFO -->
-        <tr>
-          <td class="dark-header">MODEL :-</td>
-          <td class="dark-header">SONET</td>
+  // LOAD MODELS
+  uniqueModels.forEach(model => {
 
-          <td class="dark-header">VARIANT</td>
-          <td class="dark-header">HTX</td>
+    const option =
+      document.createElement("option");
 
-          <td class="dark-header">COLOUR</td>
-          <td class="dark-header">WHITE</td>
+    option.value = model;
+    option.textContent = model;
 
-          <td class="dark-header">FUEL</td>
-          <td class="dark-header">DSL 1.5 MT</td>
-        </tr>
+    modelSelect.appendChild(option);
 
-        <!-- MAIN MODEL -->
-        <tr>
-          <td class="row-label">MODEL :-</td>
+  });
 
-          <td colspan="7" class="main-model">HTK PLUS</td>
-        </tr>
+  // MODEL CHANGE
+  modelSelect.addEventListener("change", function(){
 
-        <!-- PRICE ROWS -->
-        <tr>
-          <td class="row-label">EXSHOWROOM CSD</td>
-          <td class="row-value">10,35,900</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+    const selectedModel = this.value;
 
-        <tr>
-          <td class="row-label">COMP / ZERO DEP INS</td>
-          <td class="row-value">46,486</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+    // RESET VARIANTS
+    variantSelect.innerHTML =
+      `<option value="">Select Variant</option>`;
 
-        <tr>
-          <td class="row-label">REGISTRATION</td>
-          <td class="row-value">1,32,883</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+    // FILTER
+    const filteredCars =
+      carData.filter(
+        car => car.model === selectedModel
+      );
 
-        <tr>
-          <td class="row-label">TEMP REG</td>
-          <td class="row-value">0</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+    // LOAD VARIANTS
+    filteredCars.forEach(car => {
 
-        <tr>
-          <td class="row-label">ACCESSORIES / ESSENTIALS</td>
-          <td class="row-value">0</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+      const option =
+        document.createElement("option");
 
-        <tr>
-          <td class="row-label">EXTENDED WARRANTY</td>
-          <td class="row-value">26,695</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+      // SAVE FULL OBJECT
+      option.value =
+        JSON.stringify(car);
 
-        <tr>
-          <td class="row-label">TCS 1%</td>
-          <td class="row-value">10,359</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+      // SHOW TEXT
+      option.textContent =
+        car.variant + " | " + car.fuel;
 
-        <tr>
-          <td class="row-label">FASTAG</td>
-          <td class="row-value">700</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+      variantSelect.appendChild(option);
 
-        <!-- FINAL -->
-        <tr>
-          <td class="final-label row-label">ON ROAD</td>
+    });
 
-          <td class="final-value row-value">12,53,023</td>
+  });
 
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+  // SUBMIT
+  document
+    .getElementById("quotationForm")
+    .addEventListener("submit", function(e){
 
-        <!-- BLANK ROWS -->
-        <tr class="blank-row">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </table>
+      e.preventDefault();
 
-      <!-- NOTE SECTION -->
-      <div class="note-section">
-        <!-- LEFT -->
-        <div class="note-left">
-          <div class="note-highlight">
-            NOTE - SELTOS WAITING PERIOD IS 4 TO 8 WEEKS OFFICIAL
-          </div>
+      // CHECK
+      if(!variantSelect.value){
 
-          <div class="note-item">
-            1 - Price prevailing at the time of invoicing will be applicable.
-          </div>
+        alert("Please select variant");
 
-          <div class="note-item">
-            2 - Registration price includes registration fee, HPA charges and
-            taxes.
-          </div>
+        return;
+      }
 
-          <div class="note-item">3 - Vehicle home delivery charges extra.</div>
+      // FULL OBJECT
+      const selectedCar =
+        JSON.parse(
+          variantSelect.value
+        );
 
-          <div class="note-item">
-            4 - Cheque payment considered only after clearance from bank.
-          </div>
+      // URL PARAMS
+      const params =
+        new URLSearchParams({
 
-          <div class="note-item">
-            5 - All disputes are subject to Jabalpur jurisdiction.
-          </div>
+          customer_name:
+            document.getElementById("customer_name").value,
 
-          <div class="note-item">
-            6 - Vehicle delivery will be done after full payment confirmation.
-          </div>
+          customer_address:
+            document.getElementById("customer_address").value,
 
-          <div class="note-item">
-            7 - Vehicle delivery subject to manufacturer availability.
-          </div>
+          customer_phone:
+            document.getElementById("customer_phone").value,
 
-          <div class="note-item">
-            8 - Required documents: Address Proof & PAN Card.
-          </div>
-        </div>
+          customer_email:
+            document.getElementById("customer_email").value,
 
-        <!-- RIGHT -->
-        <div class="note-right">
-          <div class="rtgs-title">DETAILS FOR RTGS</div>
+          kec_name:
+            document.getElementById("kec_name").value,
 
-          <div>KHATWANI SALES AND SERVICES LLP</div>
-          <div>HDFC BANK</div>
-          <div>GOLBAZAR JABALPUR</div>
-          <div>A/C NO - 50200038843736</div>
-          <div>IFSC - HDFC0000224</div>
-        </div>
-      </div>
+          kec_mobile:
+            document.getElementById("kec_mobile").value,
 
-      <!-- FOOTER -->
-      <div class="footer-section">
-        <!-- LEFT -->
-        <div class="footer-left">
-          <div><strong>KHATWANI SALES AND SERVICES LLP</strong></div>
+          quotation_date:
+            document.getElementById("todayDate").value,
 
-          <div>KIA INDIA</div>
+          color:
+            document.getElementById("color").value,
 
-          <div>Sales & Service</div>
+          model:
+            selectedCar.model,
 
-          <div>
-            509/4D Near Tripuri Chowk, Madan Mahal Road, Garha Jabalpur (MP) -
-            482003
-          </div>
+          variant:
+            selectedCar.variant,
 
-          <div>
-            16-17 Telwara Nagpur Road Near Radha Swami Satsang, Jabalpur (MP) -
-            480003
-          </div>
+          fuel:
+            selectedCar.fuel,
 
-          <div>
-            <a href="mailto:khatwanikia.edp@gmail.com">
-              khatwanikia.edp@gmail.com
-            </a>
-          </div>
-        </div>
+          description:
+            selectedCar.description,
 
-        <!-- RIGHT -->
-        <div class="footer-right">
-          <div class="kec-header">KEC</div>
+          ex_showroom:
+            selectedCar.ex_showroom,
 
-          <div class="footer-right-inner">
-            <div class="sig-area">
-              <div class="sig-label-block">SIGNATURE</div>
+          insurance:
+            selectedCar.insurance,
 
-              <div class="sig-space"></div>
-            </div>
+          registration:
+            selectedCar.registration_charges,
 
-            <div class="name-block">
-              <div class="name-row">
-                <span class="nl">NAME :-</span>
-                <span class="nv">RITESH</span>
-              </div>
+          temp_registration:
+            selectedCar.temp_registration,
 
-              <div class="name-row">
-                <span class="nl">MO.NO :-</span>
-                <span class="nv">0000000000</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          accessories:
+            selectedCar.accessories_kit,
+
+          extended_warranty:
+            selectedCar.extended_warranty,
+
+          tcs:
+            selectedCar.tcs,
+
+          fastag:
+            selectedCar.fastag,
+
+          on_road:
+            selectedCar.on_road_price
+
+        });
+
+      // REDIRECT
+      window.location.href =
+        "https://ritesh-kec-1.blogspot.com?"
+        + params.toString();
+
+  });
+
+});
+
+</script>
   </body>
-  <script>
-    function printQuotation() {
-      window.print();
-    }
-  </script>
 </html>
